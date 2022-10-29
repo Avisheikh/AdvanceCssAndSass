@@ -12,3 +12,40 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+//Media query manager
+/*
+    0-600px:        phone
+    600-900px:      tablet
+    900-1200px:     tablet landscape
+    1200-1800:      is where our normal styles apply
+    1800px-*:       big screen
+
+ $breakpoint arugment choices:
+ - phone
+ - tab-port
+ - tab-land
+ - big-desktop
+
+ order: BASE + typography > general layout + grid > page layout > components
+*/
+
+
+@mixin respond($breakpoint) {
+    @if $breakpoint == phone {
+        @media only screen and (max-width: 37.5em) {@content}; //600px(600/16 - 16 is default font size)
+    }
+
+    @if $breakpoint == tab-port {
+        @media only screen and (max-width: 56.25em) {@content}; //900px(900/16 - 16 is default font size)
+    }
+
+    @if $breakpoint == tab-land {
+        @media only screen and (max-width: 75em) {@content}; //1200px(600/16 - 16 is default font size)
+    }
+
+    @if $breakpoint == big-desktop {
+        @media only screen and (min-width: 112.5em) {@content}; //1800px(600/16 - 16 is default font size)
+    }
+
+}
